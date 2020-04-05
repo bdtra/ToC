@@ -29,6 +29,8 @@ public class TomesOfCreation
 {
     //<editor-fold desc="Directly reference a log4j logger.">
     private static final Logger LOGGER = LogManager.getLogger();
+    public static final String MOD_ID = "tomesofcreation";
+    public static TomesOfCreation instance;
     //</editor-fold>
 
     //<editor-fold desc="Constructor and registers">
@@ -44,7 +46,7 @@ public class TomesOfCreation
 
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
-
+        instance = this;
         // Allows this to be used as an event bus subscriber
         MinecraftForge.EVENT_BUS.register(this);
     }
