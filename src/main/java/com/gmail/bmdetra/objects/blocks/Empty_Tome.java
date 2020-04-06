@@ -25,7 +25,7 @@ import java.util.stream.Stream;
 public class Empty_Tome extends Block {
 
 public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
-
+    //<editor-fold desc="Voxel Shapes">
     public static final VoxelShape SHAPE_S = Stream.of(
             Block.makeCuboidShape(5, 0, 3, 8, 16, 13),
             Block.makeCuboidShape(8, 0, 3, 11, 16, 13),
@@ -54,6 +54,7 @@ public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING
             Block.makeCuboidShape(3, 0, 11, 14, 16, 11.600000000000001),
             Block.makeCuboidShape(2, 0, 4.4, 3, 16, 11.6)
     ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
+    //</editor-fold>
 
     public Empty_Tome(Properties properties) {
         super(properties);
