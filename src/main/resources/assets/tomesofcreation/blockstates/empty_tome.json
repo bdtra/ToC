@@ -1,5 +1,8 @@
 {
 	"variants": {
-		"":{"model": "tomesofcreation:block/empty_tome"}
+		"facing=south":{"model": "tomesofcreation:block/empty_tome"},
+		"facing=west":{"model": "tomesofcreation:block/empty_tome", "y": 90},
+		"facing=north":{"model": "tomesofcreation:block/empty_tome", "y": 180},
+		"facing=east":{"model": "tomesofcreation:block/empty_tome", "y": 270}
 	}
 }
