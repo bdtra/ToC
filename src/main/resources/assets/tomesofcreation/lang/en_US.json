@@ -1,3 +1,5 @@
 {
-  "block.tomesofcreation.empty_tome": "Empty Tome"
+  "block.tomesofcreation.empty_tome": "Empty Tome",
+  "item.tomesofcreation.ancient_paper": "Ancient Paper",
+  "itemGroup.Tomes Of Creation": "Tomes Of Creation"
 }

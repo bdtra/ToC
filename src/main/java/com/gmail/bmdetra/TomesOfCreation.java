@@ -3,10 +3,14 @@ package com.gmail.bmdetra;
 //</editor-fold>
 
 //<editor-fold desc="Imports">
+import com.gmail.bmdetra.init.BlockInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
@@ -35,17 +39,18 @@ public class TomesOfCreation
 
     //<editor-fold desc="Constructor and registers">
     public TomesOfCreation() {
+        final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         // Register the setup method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        eventBus.addListener(this::setup);
 
         // Register the enqueueIMC method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
+        eventBus.addListener(this::enqueueIMC);
 
         // Register the processIMC method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
+        eventBus.addListener(this::processIMC);
 
         // Register the doClientStuff method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+        eventBus.addListener(this::doClientStuff);
         instance = this;
         // Allows this to be used as an event bus subscriber
         MinecraftForge.EVENT_BUS.register(this);
@@ -92,16 +97,18 @@ public class TomesOfCreation
     }
     //</editor-fold>
 
-    //<editor-fold desc="Event Bus Subscriber and Block Registration">
-    // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
-    // Event bus for receiving Registry Events)
-    @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
-    public static class RegistryEvents {
-        @SubscribeEvent
-        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-            // register a new block here
-            LOGGER.info("HELLO from Register Block");
+    public static class TomesOfCreationItemGroup extends ItemGroup
+    {
+        public static final TomesOfCreationItemGroup instance = new TomesOfCreationItemGroup(ItemGroup.GROUPS.length, "Tomes Of Creation");
+        private TomesOfCreationItemGroup(int index, String label)
+        {
+            super(index, label);
+        }
+
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(BlockInit.empty_tome);
         }
     }
-    //</editor-fold>
+
 }
